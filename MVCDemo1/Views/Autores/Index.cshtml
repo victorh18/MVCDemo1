@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Autore>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3 style="text-align: center">AUTORES</h3>
+@Html.ActionLink("NUEVO", "Create", "Autores", new { @class = "btn btn-primary"})
+@Html.ActionLink("NACIONALIDADES", "Index", "Nacionalidades", null, new { @class = "btn btn-default" })
+<hr />
+
+<!--Lista de autores disponibles-->
+<table class="table table-hover table-bordered">
+    <tr style="background-color: lightgrey">
+        <th>
+            @Html.DisplayNameFor(a => a.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(a => a.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(a => a.Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(a => a.Nacionalidade.Nacionalidad)
+        </th>
+    </tr>
+
+<!--Para iterar los registros-->
+@foreach(Autore a in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(x => a.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(x => a.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(x => a.Apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(x => a.Nacionalidade.Nacionalidad)
+        </td>
+    </tr>
+
+}
+</table>
+
+vdela

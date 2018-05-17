@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MVCDemo1.Editora>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Editoras disponibles</h2>
+
+<p>
+    @Html.ActionLink("Nueva Editora", "Create", "Editoras", new { @class="btn btn-primary btn-md"})
+</p>
+
+<table class="table-hover table table-bordered">
+    <tr>
+        <th class="label-default" style="text-align: center">
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th class="label-default" style="text-align: center">
+            @Html.DisplayNameFor(model => model.Editorial)
+        </th>
+        <th class="label-default" style="text-align: center">
+            ACCIONES
+        </th>
+    </tr>
+
+@foreach (var e in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(x => e.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(x => e.Editorial)
+        </td>
+        <td>
+            <div class="btn-group" style="text-align: center">
+                <!--In order to use a specific parameter name, one must also use that same name in the "new" declaration of the route values of the ActionLink-->
+                @Html.ActionLink("EDITAR", "Edit", new { _id = e.ID}, new { @class="btn btn-default"})
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

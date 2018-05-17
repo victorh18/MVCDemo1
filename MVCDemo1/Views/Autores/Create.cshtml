@@ -1,0 +1,44 @@
+﻿@model MVCDemo1.Models.ViewModels.CreateAutoresVM
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!--Creo el formulario-->
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <!--Declaramos el inicio del formulario-->
+    <div class="form-horizontal">
+        <!--Ponemos un titulo-->
+        <h3>REGISTRAR NUEVO AUTOR</h3>
+        <hr />
+
+        <!--Grupo de controles del nombre-->
+        <div class="form-group">
+            @Html.LabelFor(model => model._autor.Nombre, new { htmlAttributes = new { @class = "control-label"} })
+            @Html.EditorFor(x => x._autor.Nombre, new { htmlAttributes = new { @class = "form-control"} })
+        </div>
+
+        <!--Grupo de controles para el apellido-->
+        <div class="form-group">
+            @Html.LabelFor(a => a._autor.Apellido, new { htmlAttributes = new { @class = "control-label"} })
+            @Html.EditorFor(a => a._autor.Apellido, new { htmlAttributes = new { @class = "form-control"} })
+
+        </div>
+
+        <!--Grupo para seleccionar la nacionalidad-->
+        <div class="form-group">
+            @Html.LabelFor(a => a.Nacionalidades, new { htmlAttributes = new {@class = "control-label"}})
+            @Html.DropDownListFor(a => a._autor.Nacionalidad, Model.Nacionalidades)
+        </div>
+
+        <!--Para el grupo del boton-->
+        <div>
+            <input type="submit" value="CREAR" class="btn btn-default"/>
+        </div>
+
+    </div>
+
+}

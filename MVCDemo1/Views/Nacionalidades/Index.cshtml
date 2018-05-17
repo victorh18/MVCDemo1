@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Nacionalidade>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3 style="text-align: center">NACIONALIDADES</h3>
+@Html.ActionLink("NUEVO", "Create", null, new { @class = "btn btn-primary"})
+<hr />
+
+<table class="table table-hover">
+    <tr style="background-color: lightgray">
+        <th>
+            @Html.DisplayNameFor(a => a.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(a => a.Nacionalidad)
+        </th>
+    </tr>
+@foreach (Nacionalidade n in Model){
+
+    <tr>
+        <td>
+            @Html.DisplayFor(x => n.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(x => n.Nacionalidad)
+        </td>
+    </tr>
+}
+
+</table>
+
+

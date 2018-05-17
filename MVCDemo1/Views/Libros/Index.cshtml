@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MVCDemo1.Libro>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align: center">LISTADO DE LIBROS</h2>
+
+<p>
+    @Html.ActionLink("NUEVO", "Create", null, new { @class = "btn btn-primary"})
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th class="table-header">
+            @Html.DisplayNameFor(model => model.Editora1.Editorial).ToString().ToUpper()
+        </th>
+        <th class="table-header">
+            @Html.DisplayNameFor(model => model.ISBN).ToString().ToUpper()
+        </th>
+        <th class="table-header">
+            @Html.DisplayNameFor(model => model.Titulo).
+        </th>
+        <th class="table-header">
+            @Html.DisplayNameFor(model => model.FechaPublicacion).ToString().ToUpper().Replace("&#243;", "Ó")
+        </th>
+        <th class="table-header">
+            @Html.DisplayNameFor(model => model.Cantidad).ToString().ToUpper()
+        </th>
+        <th class="table-header">
+            @Html.DisplayNameFor(model => model.Cantidad_Paginas).ToString().ToUpper().Replace("&#225;", "Á")
+        </th>
+        <th class="table-header"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Editora1.Editorial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPublicacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad_Paginas)
+        </td>
+        <td>
+            <div class="btn-group col-lg-12" style="text-align: center">
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new { @class = "btn btn-default" }) 
+                @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "btn btn-primary" }) 
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "btn btn-danger" })
+            </div>
+        </td>
+    </tr>
+}
+
+</table>
