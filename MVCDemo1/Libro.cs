@@ -12,12 +12,15 @@ namespace MVCDemo1
         public int ID { get; set; }
 
         [StringLength(50)]
+        [DisplayFormat(DataFormatString = "{0:###-#####-#}")]
         public string ISBN { get; set; }
 
         [StringLength(1000)]
         public string Titulo { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Fecha de publicación")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "date")]
         public DateTime? FechaPublicacion { get; set; }
 

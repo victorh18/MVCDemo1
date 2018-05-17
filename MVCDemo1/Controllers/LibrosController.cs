@@ -39,6 +39,7 @@ namespace MVCDemo1.Controllers
         // GET: Libros/Create
         public ActionResult Create()
         {
+            ViewBag.phoneMask = "999-999-9999";
             ViewBag.Editora = new SelectList(db.Editoras, "ID", "Editorial");
             return View();
         }
@@ -58,6 +59,7 @@ namespace MVCDemo1.Controllers
             }
 
             ViewBag.Editora = new SelectList(db.Editoras, "ID", "Editorial", libro.Editora);
+
             return View(libro);
         }
 
