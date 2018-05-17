@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVCDemo1;
+using PagedList;
+using System.Text.RegularExpressions;
+using MVCDemo1.Models.ViewModels;
 
 namespace MVCDemo1.Controllers
 {
@@ -18,9 +21,20 @@ namespace MVCDemo1.Controllers
         public ActionResult Index()
         {
             var libros = db.Libros.Include(l => l.Editora1);
-            return View(libros.ToList());
-        }
 
+            List<ListBookVM> librosVista = new List<ListBookVM>();
+
+            foreach (var lib in libros)
+            {
+                librosVista.Add(new ListBookVM { libro = lib });
+
+            }
+
+            //return View(libros.ToList());
+            return View(librosVista.ToList());
+
+        }
+       
         // GET: Libros/Details/5
         public ActionResult Details(int? id)
         {
@@ -53,6 +67,7 @@ namespace MVCDemo1.Controllers
         {
             if (ModelState.IsValid)
             {
+                libro.ISBN = Regex.Replace(libro.ISBN, @"[^0-9]", "");
                 db.Libros.Add(libro);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -62,7 +77,7 @@ namespace MVCDemo1.Controllers
 
             return View(libro);
         }
-
+        
         // GET: Libros/Edit/5
         public ActionResult Edit(int? id)
         {

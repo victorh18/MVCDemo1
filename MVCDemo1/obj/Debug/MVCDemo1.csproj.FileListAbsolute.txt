@@ -92,3 +92,7 @@ C:\Users\vdelarosa\Documents\Visual Studio 2017\Projects\MVCDemo1\MVCDemo1\obj\D
 C:\Users\vdelarosa\Documents\Visual Studio 2017\Projects\MVCDemo1\MVCDemo1\obj\Debug\MVCDemo1.csproj.CoreCompileInputs.cache
 C:\Users\vdelarosa\Documents\Visual Studio 2017\Projects\MVCDemo1\MVCDemo1\obj\Debug\MVCDemo1.dll
 C:\Users\vdelarosa\Documents\Visual Studio 2017\Projects\MVCDemo1\MVCDemo1\obj\Debug\MVCDemo1.pdb
+C:\Users\vdelarosa\Documents\Visual Studio 2017\Projects\MVCDemo1\MVCDemo1\bin\PagedList.dll
+C:\Users\vdelarosa\Documents\Visual Studio 2017\Projects\MVCDemo1\MVCDemo1\bin\PagedList.Mvc.dll
+C:\Users\vdelarosa\Documents\Visual Studio 2017\Projects\MVCDemo1\MVCDemo1\bin\PagedList.xml
+C:\Users\vdelarosa\Documents\Visual Studio 2017\Projects\MVCDemo1\MVCDemo1\bin\PagedList.Mvc.xml

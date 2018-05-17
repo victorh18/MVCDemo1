@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVCDemo1.Libro>
+﻿@model IEnumerable<MVCDemo1.Models.ViewModels.ListBookVM>
 
 @{
     ViewBag.Title = "Index";
@@ -12,22 +12,22 @@
 <table class="table table-bordered table-hover">
     <tr>
         <th class="table-header">
-            @Html.DisplayNameFor(model => model.Editora1.Editorial).ToString().ToUpper()
+            @Html.DisplayNameFor(model => model.libro.Editora1.Editorial).ToString().ToUpper()
         </th>
         <th class="table-header">
-            @Html.DisplayNameFor(model => model.ISBN).ToString().ToUpper()
+            @Html.DisplayNameFor(model => model.libro.ISBN).ToString().ToUpper()
         </th>
         <th class="table-header">
-            @Html.DisplayNameFor(model => model.Titulo).
+            @Html.DisplayNameFor(model => model.libro.Titulo).
         </th>
         <th class="table-header">
-            @Html.DisplayNameFor(model => model.FechaPublicacion).ToString().ToUpper().Replace("&#243;", "Ó")
+            @Html.DisplayNameFor(model => model.libro.FechaPublicacion).ToString().ToUpper().Replace("&#243;", "Ó")
         </th>
         <th class="table-header">
-            @Html.DisplayNameFor(model => model.Cantidad).ToString().ToUpper()
+            @Html.DisplayNameFor(model => model.libro.Cantidad).ToString().ToUpper()
         </th>
         <th class="table-header">
-            @Html.DisplayNameFor(model => model.Cantidad_Paginas).ToString().ToUpper().Replace("&#225;", "Á")
+            @Html.DisplayNameFor(model => model.libro.Cantidad_Paginas).ToString().ToUpper().Replace("&#225;", "Á")
         </th>
         <th class="table-header"></th>
     </tr>
@@ -35,31 +35,41 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Editora1.Editorial)
+            @Html.DisplayFor(modelItem => item.libro.Editora1.Editorial)
+        </td>
+        <td class="phone">
+            @Html.DisplayFor(modelItem => item.ISBNFormatter, new { htmlAttributes = new { @class="phone"} })
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ISBN)
+            @Html.DisplayFor(modelItem => item.libro.Titulo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
+            @Html.DisplayFor(modelItem => item.libro.FechaPublicacion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaPublicacion)
+            @Html.DisplayFor(modelItem => item.libro.Cantidad)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad_Paginas)
+            @Html.DisplayFor(modelItem => item.libro.Cantidad_Paginas)
         </td>
         <td>
             <div class="btn-group col-lg-12" style="text-align: center">
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new { @class = "btn btn-default" }) 
-                @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "btn btn-primary" }) 
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Edit", "Edit", new { id=item.libro.ID }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Details", "Details", new { id=item.libro.ID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Delete", new { id=item.libro.ID }, new { @class = "btn btn-danger" })
             </div>
         </td>
     </tr>
 }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="/Scripts/jquery.maskedinput.js"></script>
+    <script type='text/javascript'>
+
+        $(document).ready(function () { { $('.phone').mask("999-999-9999"); } });
+
+    </script>
+}
