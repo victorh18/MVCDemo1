@@ -91,6 +91,19 @@ namespace MVCDemo1.Controllers
                 return HttpNotFound();
             }
             ViewBag.Editora = new SelectList(db.Editoras, "ID", "Editorial", libro.Editora);
+            //To allow selecting multiple authors
+            //First, the complete list of available authors, with the complete name
+            var authors = db.Autores.AsEnumerable()
+                .Select(a => new
+                {
+                    AuthorID = a.ID,
+                    Name = string.Format("{0} {1}", a.Nombre, a.Apellido)
+                    //Name = $"{a.Nombre} {a.Apellido}"
+                });
+                //.ToList();
+            ViewBag.Autores = new SelectList(authors, "AuthorID", "Name");
+            //ViewBag.Autores = new SelectList(authors, nameof(Autore.Nombre), nameof(Autore.Nombre);
+
             return View(libro);
         }
 

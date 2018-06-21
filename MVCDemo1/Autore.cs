@@ -19,5 +19,8 @@ namespace MVCDemo1
         public int? Nacionalidad { get; set; }
 
         public virtual Nacionalidade Nacionalidade { get; set; }
+        
+        //For the many to many relationship regarding books
+        public virtual ICollection<Libro> Libros { get; set; }
     }
 }

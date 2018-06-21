@@ -52,6 +52,24 @@ namespace MVCDemo1
                 .HasMany(e => e.Autores)
                 .WithOptional(e => e.Nacionalidade)
                 .HasForeignKey(e => e.Nacionalidad);
+
+            //Many-to-many relationship regarding authors and books
+            //We begin with either of the entities (once selected, this is going to be our "left entity")
+            modelBuilder.Entity<Libro>()
+                //We tell it the "many right entities" it can have, in this case, the many Authors a book can have
+                .HasMany(x => x.Autors)
+                //And then in return, we define the "many original(left)" entities the related entities can have, in this case, the many books an author can have
+                .WithMany(x => x.Libros)
+                //And then, we defined how this relationship will be represented in the database
+                .Map(x =>
+                {
+                    //The join table that will hold the relationships
+                    x.ToTable("autoresLibros");
+                    //Which is the corresponding foreign key field for the left entity
+                    x.MapLeftKey("LibroID");
+                    //Which is the corresponding foreign key field for the right entity
+                    x.MapRightKey("AutorID");
+                });
         }
     }
 }

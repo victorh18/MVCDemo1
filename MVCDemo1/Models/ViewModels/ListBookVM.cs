@@ -14,5 +14,6 @@ namespace MVCDemo1.Models.ViewModels
                 return lol.Substring(1, 3) + "-" + lol.Substring(4, 3) + "-" + lol.Substring(6, 4);
             }
         }
+
     }
 }

@@ -168,6 +168,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Libro.cs" />
+    <Compile Include="Models\ViewModels\AutoresPorLibro.cs" />
     <Compile Include="Models\ViewModels\CreateAutoresVM.cs" />
     <Compile Include="Models\ViewModels\ListBookVM.cs" />
     <Compile Include="Nacionalidade.cs" />
@@ -187,6 +188,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\code.js" />
     <Content Include="Scripts\inputmask\bindings\inputmask.binding.js" />
     <Content Include="Scripts\inputmask\bindings\inputmask.binding.min.js" />
     <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.jqlite.js" />

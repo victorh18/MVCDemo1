@@ -33,5 +33,8 @@ namespace MVCDemo1
         public int? Cantidad_Paginas { get; set; }
 
         public virtual Editora Editora1 { get; set; }
+
+        //For the many-to-many relationship regarding Authors
+        public virtual ICollection<Autore> Autors { get; set; }
     }
 }

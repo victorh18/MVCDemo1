@@ -4,6 +4,12 @@
     ViewBag.Title = "Index";
 }
 
+<script type="text/javascript">
+    function AlertName(name) {
+        alert('Hiciste click a ' + name);
+    }
+</script>
+
 <h2 style="text-align: center">LISTADO DE LIBROS</h2>
 
 <p>
@@ -29,15 +35,18 @@
         <th class="table-header">
             @Html.DisplayNameFor(model => model.libro.Cantidad_Paginas).ToString().ToUpper().Replace("&#225;", "Á")
         </th>
+        <th class="table-header">
+            Autores
+        </th>
         <th class="table-header"></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td onclick="AlertName('@String.Format("{0}", item.libro.Editora1.Editorial)')">
             @Html.DisplayFor(modelItem => item.libro.Editora1.Editorial)
         </td>
-        <td class="phone">
+        <td class="phone" >
             @Html.DisplayFor(modelItem => item.ISBNFormatter, new { htmlAttributes = new { @class="phone"} })
         </td>
         <td>
@@ -51,6 +60,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.libro.Cantidad_Paginas)
+        </td>
+        <td>
+            @foreach (var autor in item.libro.Autors)
+            {
+                @autor.ID @: @autor.Nombre
+            }
         </td>
         <td>
             <div class="btn-group col-lg-12" style="text-align: center">
