@@ -101,6 +101,7 @@ namespace MVCDemo1.Controllers
                     //Name = $"{a.Nombre} {a.Apellido}"
                 });
                 //.ToList();
+            
             ViewBag.Autores = new SelectList(authors, "AuthorID", "Name");
             //ViewBag.Autores = new SelectList(authors, nameof(Autore.Nombre), nameof(Autore.Nombre);
 
@@ -112,11 +113,23 @@ namespace MVCDemo1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ISBN,Titulo,FechaPublicacion,Cantidad,Editora,Cantidad,Cantidad_Paginas")] Libro libro)
+        public ActionResult Edit([Bind(Include = "ID,ISBN,Titulo,FechaPublicacion,Cantidad,Editora,Cantidad,Cantidad_Paginas")] Libro libro, string[] selectedAuthors)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(libro).State = EntityState.Modified;
+
+                List<int> intSelectedAuthors = new List<int>();
+                for (int i = 0; i < selectedAuthors.Length; i++)
+                {
+                    intSelectedAuthors.Add(Int32.Parse(selectedAuthors[i]));
+                }
+                //If there's any selected authors
+                if (selectedAuthors != null)
+                {
+                    updateSelectedAuthors(libro.ID, intSelectedAuthors);
+                }
+                
                 db.SaveChanges();
                 //return RedirectToAction("Index");
                 return Content("<script>alert('Actualizado correctamente');\nwindow.location.href = \"/Libros\"</script>");
@@ -166,6 +179,43 @@ namespace MVCDemo1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private void updateSelectedAuthors(int idLibro, List<int> selectedAuthors)
+        {
+            Libro _libro = db.Libros.Include("Autors").Where(x => x.ID == idLibro).First();
+
+            if (_libro.Autors != null)
+            {
+                List<Autore> tempList = _libro.Autors.ToList();
+                //Delete all the authors that are not contained in the current author list definition
+                foreach(Autore _author in tempList)
+                {
+                    if (!selectedAuthors.Contains(_author.ID))
+                    {
+                        _libro.Autors.Remove(_author);
+                    }
+                }
+            }
+
+            foreach(int i in selectedAuthors)
+            {
+                Autore _autor = db.Autores.Find(i);
+                if (_libro.Autors != null)
+                {
+                    if (!_libro.Autors.Contains(_autor))
+                    {
+                        _libro.Autors.Add(_autor);
+                    }
+                }
+                else
+                {
+                    
+                    _libro.Autors.Add(_autor);
+                }
+
+                
+            }
         }
     }
 }

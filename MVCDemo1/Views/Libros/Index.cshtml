@@ -64,7 +64,8 @@
         <td>
             @foreach (var autor in item.libro.Autors)
             {
-                @autor.ID @: @autor.Nombre
+                <strong>@(@autor.Nombre + " " + @autor.Apellido)</strong>
+                <hr />
             }
         </td>
         <td>

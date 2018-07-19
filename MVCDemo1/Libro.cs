@@ -36,5 +36,10 @@ namespace MVCDemo1
 
         //For the many-to-many relationship regarding Authors
         public virtual ICollection<Autore> Autors { get; set; }
+
+        //public Libro()
+        //{
+        //    Autors = new List<Autore>();
+        //}
     }
 }
