@@ -22,5 +22,11 @@ namespace MVCDemo1
         
         //For the many to many relationship regarding books
         public virtual ICollection<Libro> Libros { get; set; }
+
+        public string NombreCompleto { get
+            {
+                return Nombre + " " + Apellido;
+            }
+        }
     }
 }

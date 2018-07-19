@@ -50,6 +50,16 @@
             @Html.DisplayFor(model => model.Cantidad)
         </dd>
 
+        <dt>
+            Autores
+        </dt>
+        <dd>
+            @foreach (Autore _author in Model.Autors)
+            {
+                @(_author.Nombre + " " + _author.Apellido + "; ")
+            }
+        </dd>
+
     </dl>
 </div>
 <p>

@@ -20,7 +20,7 @@ namespace MVCDemo1
 
         [DataType(DataType.Date)]
         [Display(Name = "Fecha de publicación")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "date")]
         public DateTime? FechaPublicacion { get; set; }
 

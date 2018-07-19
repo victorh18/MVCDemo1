@@ -1,0 +1,44 @@
+﻿@model MVCDemo1.Autore
+
+@{
+    ViewBag.Title = "LibrosPorAutores";
+}
+
+<h3>Listado de libros por autores</h3>
+<h2 style="text-align: center">@Model.NombreCompleto</h2>
+
+<table class="table-striped table">
+    <tr>
+        <th>
+            LIBRO
+        </th>
+        <th>
+            CANTIDAD
+        </th>
+        <th>
+            FECHA PUBLICACION
+        </th>
+        <th>
+            EDITORIAL
+        </th>
+    </tr>
+@foreach (Libro _libro in Model.Libros)
+{
+    <tr>
+        <td>
+            @_libro.Titulo
+        </td>
+        <td>
+            @_libro.Cantidad
+        </td>
+        <td>
+            @_libro.FechaPublicacion
+        </td>
+        <td>
+            @_libro.Editora1.Editorial
+        </td>
+    </tr>
+}
+
+</table>
+

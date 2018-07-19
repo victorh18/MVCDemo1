@@ -163,6 +163,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibrosController.cs" />
     <Compile Include="Controllers\NacionalidadesController.cs" />
+    <Compile Include="Custom\CustomHTMLHelpers.cs" />
     <Compile Include="Editora.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -264,6 +265,7 @@
     <Content Include="Views\Nacionalidades\Index.cshtml" />
     <Content Include="Views\Nacionalidades\Create.cshtml" />
     <Content Include="Views\Editoras\Edit.cshtml" />
+    <Content Include="Views\Autores\LibrosPorAutores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

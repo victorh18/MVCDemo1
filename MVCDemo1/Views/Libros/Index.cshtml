@@ -35,9 +35,6 @@
         <th class="table-header">
             @Html.DisplayNameFor(model => model.libro.Cantidad_Paginas).ToString().ToUpper().Replace("&#225;", "Á")
         </th>
-        <th class="table-header">
-            Autores
-        </th>
         <th class="table-header"></th>
     </tr>
 
@@ -60,13 +57,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.libro.Cantidad_Paginas)
-        </td>
-        <td>
-            @foreach (var autor in item.libro.Autors)
-            {
-                <strong>@(@autor.Nombre + " " + @autor.Apellido)</strong>
-                <hr />
-            }
         </td>
         <td>
             <div class="btn-group col-lg-12" style="text-align: center">

@@ -78,7 +78,7 @@
             <div id="lstAutores" class="col-md-8 col-md-offset-2">
                 @foreach (Autore _author in Model.Autors)
                 {
-                    <div>
+                    @*<div>
                         <label>
                             <button class="btn btn-danger" type="button" onclick="deleteAuthor(@("this"))">
                                 BORRAR
@@ -86,7 +86,8 @@
                             <input value="@_author.ID" checked="checked" type="hidden" name="selectedAuthors"/>
                             @_author.Nombre 
                         </label>
-                    </div>
+                    </div>*@
+                    @MVCDemo1.Custom.CustomHTMLHelpers.ManyRelationshipField(_author.ID, _author.Nombre)
                 }
             </div>
         </div>

@@ -56,6 +56,20 @@
         </div>
 
         <div class="form-group">
+            @Html.Label("Autores", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.DropDownList("Autores", null, htmlAttributes: new { @class="form-control"})
+            </div>
+            <div class="col-md-2">
+                <button id="btnAgregarAutor" class="btn btn-default" type="button">Agregar</button>
+            </div>
+            <hr />
+            <div id="lstAutores" class="col-md-8 col-md-offset-2">
+
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -70,6 +84,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript" src="/Scripts/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="~/Scripts/code.js"></script>
     <script type='text/javascript'>
 
         $(document).ready(function () { { $('.phone').mask("@ViewBag.phoneMask"); } });

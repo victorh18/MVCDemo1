@@ -24,6 +24,9 @@
         <th>
             @Html.DisplayNameFor(a => a.Nacionalidade.Nacionalidad)
         </th>
+        <th>
+            ACCIONES
+        </th>
     </tr>
 
 <!--Para iterar los registros-->
@@ -41,6 +44,9 @@
         </td>
         <td>
             @Html.DisplayFor(x => a.Nacionalidade.Nacionalidad)
+        </td>
+        <td>
+            @Html.ActionLink("LIBROS", "LibrosPorAutoresView", "Autores", new { id=a.ID}, new { @class = "btn btn-default"})
         </td>
     </tr>
 

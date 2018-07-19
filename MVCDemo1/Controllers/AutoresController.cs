@@ -61,5 +61,10 @@ namespace MVCDemo1.Controllers
         {
             return RedirectToAction("Index", "Nacionalidades");
         }
+
+        public ActionResult LibrosPorAutoresView(int? id)
+        {
+            return View("LibrosPorAutores", db.Autores.Find(id));
+        }
     }
 }

@@ -53,6 +53,16 @@ namespace MVCDemo1.Controllers
         // GET: Libros/Create
         public ActionResult Create()
         {
+            //To send the authors
+            var authors = db.Autores.AsEnumerable()
+                .Select(a => new
+                {
+                    AuthorID = a.ID,
+                    Name = a.NombreCompleto 
+                }
+                );
+            ViewBag.Autores = new SelectList(authors, "AuthorID", "Name");
+
             ViewBag.phoneMask = "999-999-9999";
             ViewBag.Editora = new SelectList(db.Editoras, "ID", "Editorial");
             return View();
@@ -63,12 +73,16 @@ namespace MVCDemo1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(/*[Bind(Include = "ID,ISBN,Titulo,FechaPublicacion,Cantidad,Editora,Cantidad_Paginas")]*/ Libro libro)
+        public ActionResult Create(/*[Bind(Include = "ID,ISBN,Titulo,FechaPublicacion,Cantidad,Editora,Cantidad_Paginas")]*/ Libro libro, string[] selectedAuthors)
         {
             if (ModelState.IsValid)
             {
+
                 libro.ISBN = Regex.Replace(libro.ISBN, @"[^0-9]", "");
                 db.Libros.Add(libro);
+                
+                db.SaveChanges();
+                updateSelectedAuthors(libro.ID, selectedAuthors);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -119,16 +133,7 @@ namespace MVCDemo1.Controllers
             {
                 db.Entry(libro).State = EntityState.Modified;
 
-                List<int> intSelectedAuthors = new List<int>();
-                for (int i = 0; i < selectedAuthors.Length; i++)
-                {
-                    intSelectedAuthors.Add(Int32.Parse(selectedAuthors[i]));
-                }
-                //If there's any selected authors
-                if (selectedAuthors != null)
-                {
-                    updateSelectedAuthors(libro.ID, intSelectedAuthors);
-                }
+                updateSelectedAuthors(libro.ID, selectedAuthors);
                 
                 db.SaveChanges();
                 //return RedirectToAction("Index");
@@ -181,9 +186,21 @@ namespace MVCDemo1.Controllers
             base.Dispose(disposing);
         }
 
-        private void updateSelectedAuthors(int idLibro, List<int> selectedAuthors)
+        private void updateSelectedAuthors(int idLibro, string[] selectedAuthors)
         {
             Libro _libro = db.Libros.Include("Autors").Where(x => x.ID == idLibro).First();
+
+            if (selectedAuthors == null)
+            {
+                _libro.Autors = null;
+                return;
+            }
+
+            List<int> intSelectedAuthors = new List<int>();
+            for (int i = 0; i < selectedAuthors.Length; i++)
+            {
+                intSelectedAuthors.Add(Int32.Parse(selectedAuthors[i]));
+            }
 
             if (_libro.Autors != null)
             {
@@ -191,14 +208,14 @@ namespace MVCDemo1.Controllers
                 //Delete all the authors that are not contained in the current author list definition
                 foreach(Autore _author in tempList)
                 {
-                    if (!selectedAuthors.Contains(_author.ID))
+                    if (!intSelectedAuthors.Contains(_author.ID))
                     {
                         _libro.Autors.Remove(_author);
                     }
                 }
             }
 
-            foreach(int i in selectedAuthors)
+            foreach(int i in intSelectedAuthors)
             {
                 Autore _autor = db.Autores.Find(i);
                 if (_libro.Autors != null)
@@ -210,12 +227,20 @@ namespace MVCDemo1.Controllers
                 }
                 else
                 {
-                    
                     _libro.Autors.Add(_autor);
                 }
 
                 
             }
         }
+
+        //private void deleteAuthorsInBook(int BookID)
+        //{
+        //    Libro _libro = db.Libros.Include("Autors").Where(x => x.ID == BookID).First();
+        //    if(_libro.Autors != null)
+        //    {
+                
+        //    }
+        //}
     }
 }
